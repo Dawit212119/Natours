@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const { connected } = require('process');
 const tourRoute = require('./routes/tourRoutes');
 const userRoute = require('./routes/userRoutes');
+const { default: mongoose } = require('mongoose');
 const app = express();
 
 // console.log(app.get('env'));   express env access
@@ -33,6 +34,8 @@ app.use((req, res, next) => {
 //   route it is used to CHAIN the route handler with the same path
 
 //  mounting Router on route
+
+//   db connection
 
 app.use('/api/v1/tour', tourRoute);
 app.use('/api/v1/user', userRoute);
