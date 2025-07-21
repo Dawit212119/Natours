@@ -35,6 +35,16 @@ const tourSchema = new mongoose.Schema({
   },
 });
 const Tour = mongoose.model('Tour', tourSchema); //   create a class(model) called Tour that will implement tourschema
-
+//  create instance from the class (Tour)
+const testTour = new Tour({
+  name: 'To NYC',
+  rating: 4.8,
+  price: 456,
+});
+//  save the doucment in to db
+testTour
+  .save()
+  .then((doc) => console.log(doc))
+  .catch((err) => console.log(err));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (req, res) => console.log('server connected'));
