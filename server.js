@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import app from './app';
 const dotenv = require('dotenv');
 
@@ -16,6 +17,24 @@ const connect = mongoose.connect(DB);
 connect
   .then(() => console.log('DB Connection'))
   .cathc((err) => console.log(err));
+
+//  model tour schema
+const tourSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    unique: [true, 'tour name must be unique'],
+    require: [true, 'tour name is required'],
+  },
+  rating: {
+    type: Number,
+    default: 4.6,
+  },
+  price: {
+    type: Number,
+    require: [true, 'price is required'],
+  },
+});
+const Tour = mongoose.model('Tour', tourSchema); //   create a class(model) called Tour that will implement tourschema
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (req, res) => console.log('server connected'));
